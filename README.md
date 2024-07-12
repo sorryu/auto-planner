@@ -1,5 +1,5 @@
 # auto-planner
-This is a <span style= "color:blue">**study planner app**</span> designed to help students and exam-takers manage their study schedules efficiently.
+This is a **study planner app** designed to help students and exam-takers manage their study schedules efficiently.
 
 ## Project Structure
 - `frontend/`: Contains the React frontend code
