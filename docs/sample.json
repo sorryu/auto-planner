@@ -1,0 +1,67 @@
+{
+    "ID": 1,
+    "login_info": {
+        "Email": "hjmo123@gmail.com",
+        "password": "12345678!"
+    },
+    "user_info": {
+        "name": "모",
+        "mbti": "isfp"
+    },
+    "To-do_info": [
+        {
+            "class_id": 1,
+            "class_name": "수학",
+            "type": "unit",
+            "amount": [
+                {
+                    "id": 1,
+                    "name": "수학",
+                    "duration": {
+                        "hour": 5,
+                        "min": 0
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "일차함수",
+                    "duration": {
+                        "hour": 8,
+                        "min": 0
+                    }
+                }
+            ],
+            "date": {
+                "start": "2024-07-19",
+                "end": "2024-08-31"
+            }
+        },
+        {
+            "class_id": 2,
+            "class_name": "국어",
+            "type": "lecture",
+            "amount": [
+                {
+                    "id": 1,
+                    "name": "수필",
+                    "duration": {
+                        "hour": 1,
+                        "min": 30
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "문학",
+                    "duration": {
+                        "hour": 0,
+                        "min": 45
+                    }
+                }
+            ],
+            "date": {
+                "start": "2024-07-20",
+                "end": "2024-08-19"
+            }
+        }
+    ]
+}
