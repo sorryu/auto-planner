@@ -57,5 +57,22 @@ def signup():
     users.append(user)  # 사용자 목록에 추가
     return jsonify(user_id=user_id), 201  # 새로운 사용자 ID 반환
 
+# 과목 추가하는 앤드포인트
+
+subjects = {}
+
+@app.route('/api/study-plans/add-subject', methods=['POST'])
+@jwt_required()
+def add_subject():
+    user_id = get_jwt_identity() #jwt토큰에서 user_id 추출
+    data = request.get_json() # 요청에서 JSON 데이터 추출
+    subject = data.get('subject') # 과목 추출
+    
+    if user_id not in subjects.keys():
+        subjects[user_id] = [] #만약 subjects 딕셔너리에 user_id 키값이 없으면 키를 추가하고 벨류값은 빈 리스트로 설정
+    
+    subjects[user_id].append(subject) #이후 과목을 벨류값에 할당
+    return jsonify({"msg": "Subject added", "subjects": subjects[user_id]}), 200  #json 응답 리턴
+
 if __name__ == '__main__':
     app.run(debug=True)  # Flask 앱 실행
