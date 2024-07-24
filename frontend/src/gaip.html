@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AutoPlanner: 회원가입</title>
+        <link rel="stylesheet" type="text/css" href="gaip.css">
+    </head>
+    <body>
+        <h2>회원가입</h2>
+        <form class="join" action="first.html" method="post">
+            <div class="Email">
+                <label for="id">E-mail</label><br>
+                <input type="email" id="email" name="email" placeholder="example@email.com"><br>
+            </div>
+            <div class="PW">
+                <label for="password">비밀번호</label><br>
+                <input type="password" id="password" name="password" placeholder="password"
+                required minlength="5"><br>                
+            </div>
+            <div class="PWCheck">
+                <label for="password">비밀번호 확인</label><br>
+                <input type="password" id="password" name="password" placeholder="password"
+                required minlength="5"><br>
+            </div>
+            <div class="MBTI">
+                <label for="mbti">MBTI 입력</label><br>
+                <input type="text" id="mbti" name="mbti" placeholder="예) ENFP"><br>
+            </div>
+            <div class="loginBT">
+                <input class="Button" type="submit" value="가입하기">
+            </div>
+        </form>
+    </body>
+</html>
