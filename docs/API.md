@@ -7,7 +7,20 @@ This API allows users to manage their study plans, user authentication, and acti
 
 ## Endpoints
 
+- [홈 화면](#홈-화면-관련-엔드포인트)
+- [로그인](#로그인-관련-엔드포인트)
+- [회원가입](#회원가입-관련-엔드포인트)
+- [계획 관리](#계획-관리-엔드포인트)
+- [과목 관리](#과목-관리-엔드포인트)
+- [단원 관리](#단원-관리-엔드포인트)
+- [사용자 활동 로그 관리](#사용자-활동-로그-관리-엔드포인트)
+
 ### 홈 화면 관련 엔드포인트
+
+- [`/api/study-plans/home`](#apistudy-planshome)
+  - `HEAD`
+- [`/api/study-plans/home/{user_id}`](#apistudy-planshomeuser_id)
+  - `HEAD`
 
 #### `/api/study-plans/home`
 - **Method**: `HEAD`
@@ -29,6 +42,9 @@ This API allows users to manage their study plans, user authentication, and acti
     - `200 OK`: 사용자 로그인 상태
 
 ### 로그인 관련 엔드포인트
+
+- [`/api/study-plans/login`](#apistudy-planslogin)
+  - `POST`
 
 #### `/api/study-plans/login`
 - **Method**: `POST`
@@ -55,6 +71,9 @@ This API allows users to manage their study plans, user authentication, and acti
     ```
 
 ### 회원가입 관련 엔드포인트
+
+- [`/api/study-plans/signup`](#apistudy-planssignup)
+  - `POST`
 
 #### `/api/study-plans/signup`
 - **Method**: `POST`
@@ -99,7 +118,13 @@ This API allows users to manage their study plans, user authentication, and acti
     }
     ```
 
-### 사용자별 계획 관리 엔드포인트
+### 계획 관리 엔드포인트
+
+- `/api/study-plans/{user_id}/manage`
+  - `GET`
+  - `POST`
+- `/api/study-plans/{user_id}/manage/{plan_id}`
+  - `GET`
 
 #### `/api/study-plans/{user_id}/manage`
 
@@ -158,9 +183,15 @@ This API allows users to manage their study plans, user authentication, and acti
     }
     ```
 
-### 계획별 과목 관리 엔드포인트
+#### `/api/study-plans/{user_id}/manage/{plan_id}`
 
-#### `/api/study-plans/{user_id}/manage/{plan_id}/{class_id}`
+- **Method**: `GET`
+
+...
+
+### 과목 관리 엔드포인트
+
+#### `/api/study-plans/{user_id}/manage/{class_id}`
 
 - **Method**: `GET`
 - **Description**: Retrieves a specific class within a study plan for a user.
@@ -296,9 +327,10 @@ This API allows users to manage their study plans, user authentication, and acti
     - `401 Unauthorized`: 인증되지 않은 요청
     - `404 Not Found`: 과목을 찾을 수 없음
 
+
 ### 단원 관리 엔드포인트
 
-#### `/api/study-plans/{user_id}/manage/{plan_id}/{class_id}/{unit/lecture_id}`
+#### `/api/study-plans/{user_id}/manage/{plan_id}/{class_id}`
 
 - **Method**: `GET`
 - **Description**: Retrieves a specific unit within a class for a user.
@@ -392,6 +424,10 @@ This API allows users to manage their study plans, user authentication, and acti
     - `200 OK`: 단원이 성공적으로 삭제됨
     - `401 Unauthorized`: 인증되지 않은 요청
     - `404 Not Found`: 단원을 찾을 수 없음
+
+#### `/api/study-plans/{user_id}/manage/{plan_id}/{class_id}/{unit_lecture_id}`
+
+
 
 ### 사용자 활동 로그 관리 엔드포인트
 
