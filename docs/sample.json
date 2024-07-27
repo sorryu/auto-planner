@@ -1,30 +1,30 @@
 {
     "users" : [
         {
-            "id": "1",
+            "id": "0x00000001",
             "login_info": {
-                "e-mail": "hjmo123@gmail.com",
-                "password": "12345678!"
+                "e-mail": "aGptbzEyM0BnbWFpbC5jb20=",
+                "password": "$2b$12$lNF48uBDUgQgSl7ldqEZpelKbzIq4tKNV4n84xzUI5qO1J1OMEJ.i"
             },
             "user_info": {
-                "name": "모",
+                "name": "66qo",
                 "MBTI": "isfp"
             },
             "classes": [
                 {
-                    "id": "1",
+                    "id": "0x0001",
                     "title": "수학",
                     "type": "unit",
-                    "lectures": [
+                    "units": [
                         {
-                            "id": "1",
+                            "id": "0x0001",
                             "title": "인수분해",
-                            "term": "05:00:00"
+                            "duration": "05:00:00"
                         },
                         {
-                            "id": "2",
+                            "id": "0x0002",
                             "title": "일차함수",
-                            "term": "08:00:00"
+                            "duration": "08:00:00"
                         }
                     ],
                     "session": {
@@ -33,17 +33,17 @@
                     }
                 },
                 {
-                    "id": "2",
+                    "id": "0x0002",
                     "title": "국어",
                     "type": "lecture",
                     "lectures": [
                         {
-                            "id": "1",
+                            "id": "0x0001",
                             "title": "수필",
-                            "term": "01:30:00"
+                            "duration": "01:30:00"
                         },
                         {
-                            "id": "2",
+                            "id": "0x0002",
                             "title": "문학",
                             "duration": "00:45:00"
                         }
@@ -56,18 +56,54 @@
             ],
             "plans": [
                 {
-                    "id": "1",
+                    "id": "0x0001",
                     "title": "Study Plan 1",
-                    "description": "Description of study plan 1",
-                    "classes": ["1", "2"]
+                    "description": "This Study Plan shows every classes",
+                    "classes": ["0x0001", "0x0002"]
                 },
                 {
-                    "id": "2",
+                    "id": "0x0002",
                     "title": "Study Plan 2",
-                    "description": "Description of study plan 2",
-                    "classes": ["2"]
+                    "description": "This Study Plan shows only classes '국어'",
+                    "classes": ["0x0002"]
                 }
             ]
         }
-    ]
+    ],
+    "logs": {
+        "2024-07-19": {
+            "0x00000001": [
+                {
+                    "timestamp": "2024-07-19T14:23:45Z",
+                    "event_type": "login",
+                    "details": {
+                        "ip_address": "192.168.1.1",
+                        "device": "web",
+                        "status": "success"
+                    }
+                },
+                {
+                    "timestamp": "2024-07-19T15:10:11Z",
+                    "event_type": "logout",
+                    "details": {
+                        "duration": "00:46:26",
+                        "status": "success"
+                    }
+                }
+            ]
+        },
+        "2024-07-20": {
+            "0x00000001": [
+                {
+                    "timestamp": "2024-07-20T10:00:00Z",
+                    "event_type": "login",
+                    "details": {
+                        "ip_address": "192.168.1.1",
+                        "device": "web",
+                        "status": "success"
+                    }
+                }
+            ]
+        }
+    }
 }
