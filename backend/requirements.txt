@@ -1,1 +1,29 @@
+# 필요한 패키지
+# 웹 프레임워크
+Flask==3.0.3
 
+# Flask를 위한 Cross-Origin Resource Sharing (CORS)
+Flask-Cors==4.0.1
+
+# Flask 의존성
+click==8.1.7                     # Flask의 커맨드 라인 유틸리티
+itsdangerous==2.2.0              # Flask의 데이터 서명 처리
+Jinja2==3.1.4                    # Flask의 템플릿 엔진
+MarkupSafe==2.1.5                # Flask를 위한 안전한 문자열 처리
+Werkzeug==3.0.3                  # Flask를 위한 WSGI 유틸리티 라이브러리
+blinker==1.8.2                   # Flask 애플리케이션에서 시그널 사용 (옵션)
+
+# 데이터베이스 ORM
+SQLAlchemy==2.0.31
+
+# HTTP 요청 라이브러리
+requests==2.32.3
+
+# requests 의존성
+certifi==2024.7.4                # SSL 인증서
+charset-normalizer==3.3.2        # requests 라이브러리의 인코딩 정상화
+idna==3.7                        # 국제화된 도메인 이름
+urllib3==2.2.2                   # HTTP 라이브러리
+
+# 기타 의존성
+typing_extensions==4.12.2        # Python 표준 라이브러리의 타이핑 모듈 백포트
