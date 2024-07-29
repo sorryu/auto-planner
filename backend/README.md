@@ -4,33 +4,35 @@ This directory contains the Flask backend code for the Study Planner App.
 
 ## Setup
 
-1. Create a virtual environment:
-  ```bash
-  python -m venv venv
-  ```
+### 1. Create a virtual environment:
+```bash
+python -m venv venv
+```
 
-2. Activate the virtual environment:
-   - On windows:
-    ```bash
-    venv\Scripts\activate
-    ```
-  - On MacOS/Linux:
-    ```bash
-    soource venv/bin/activate
-    ```
+### 2. Activate the virtual environment:
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- On windows:
+```bash
+venv\Scripts\activate
+```
+
+- On MacOS/Linux:
+```bash
+source venv/bin/activate
+```
+
+### 3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
 ## Running the Application
 
-To start the Flas application, run:
+To start the Flask application, run:
 ```bash
 flask run
 ```
-The app will be available at 'http://localhost:5000'.
+The app will be available at `http://localhost:5000`.
 
 ## Running Tests
 
