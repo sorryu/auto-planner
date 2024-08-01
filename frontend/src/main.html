@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
     <title>달력</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="./add.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<div class="wrapper">
-    <header>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="Logo">
+        <a href="./main.html">PlanA</a>
+      </h1>
+      <div class="auto-mypage">
+        <button class="add-button" id="openModalBtn">Auto 계획 추가하기</button>
+        <a href="./mypage.html">
+          <image class="mypage" src="./settings.png"></image>
+        </a>
+      </div>
+    </header>
+    <div class="wrapper">
+      <header>
         <div class="nav">
           <button class="material-icons"> ← </button>
           <p class="current-date">2024년 7월</p>
-          <button class="material-icons"> → </span>
+          <button class="material-icons"> → </button>
         </div>
       </header>
       <div class="calendar">
@@ -59,3 +73,41 @@
         </ul>
       </div>
     </div>
+
+    <!--모달-->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">x</span>
+        <div class="select">
+          <div class="classname">
+            <div class="class-setting">
+              <h3>과목</h3>
+              <input class="add-delete" type="submit" value="추가/삭제">
+            </div>
+            <div class="class-input">
+              <ul><input type="checkbox">A</ul>
+              <ul><input type="checkbox">B</ul>
+              <ul><input type="checkbox">C</ul>
+            </div>
+          </div>
+          <div class="amount">
+            <h3>분량</h3>
+            <div class="amount-input">
+              이걸 어케 표시....
+            </div>
+          </div>
+          <div class="date">
+            <h3>기한</h3>
+            <div class="date-input">
+              <input type="date">
+              <h2> ~ </h2>
+              <input type="date">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./add.js"></script>
+  </body>
+</html>
