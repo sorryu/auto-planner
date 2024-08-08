@@ -3,6 +3,9 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # JWT 시크릿 키 설정
+app.config['SECRET_KEY'] = 'YesJiseongTeam'
+app.config['BCRYPT_LEVEL'] = 10
+bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 # 임시 데이터 저장소
@@ -41,6 +44,7 @@ def signup():
     data = request.get_json()  # 요청에서 JSON 데이터 추출
     email = data.get('email')  # 이메일 추출
     password = data.get('password')  # 비밀번호 추출
+    pw_hash = bcrypt.generate_password_hash(password)
     name = data.get('name')  # 이름 추출
     mbti = data.get('mbti')  # MBTI 추출
     
