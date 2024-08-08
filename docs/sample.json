@@ -1,76 +1,109 @@
 {
-    "user_id": 1,
-    "login_info": {
-        "Email": "hjmo123@gmail.com",
-        "password": "12345678!"
-    },
-    "user_info": {
-        "name": "모",
-        "mbti": "isfp"
-    },
-    "To-do_info": [
+    "users" : [
         {
-            "class_id": 1,
-            "class_name": "수학",
-            "type": "unit",
-            "amount": [
+            "id": "0x00000001",
+            "login_info": {
+                "e-mail": "aGptbzEyM0BnbWFpbC5jb20=",
+                "password": "$2b$12$lNF48uBDUgQgSl7ldqEZpelKbzIq4tKNV4n84xzUI5qO1J1OMEJ.i"
+            },
+            "user_info": {
+                "name": "66qo",
+                "MBTI": "isfp"
+            },
+            "classes": [
                 {
-                    "unit_id": 1,
-                    "unit_name": "수학",
-                    "duration": {
-                        "hour": 5,
-                        "min": 0
+                    "id": "0x0001",
+                    "title": "수학",
+                    "type": "unit",
+                    "units": [
+                        {
+                            "id": "0x0001",
+                            "title": "인수분해",
+                            "duration": "05:00:00"
+                        },
+                        {
+                            "id": "0x0002",
+                            "title": "일차함수",
+                            "duration": "08:00:00"
+                        }
+                    ],
+                    "session": {
+                        "start": "2024-07-19",
+                        "end": "2024-08-31"
                     }
                 },
                 {
-                    "unit_id": 2,
-                    "unit_name": "일차함수",
-                    "duration": {
-                        "hour": 8,
-                        "min": 0
+                    "id": "0x0002",
+                    "title": "국어",
+                    "type": "lecture",
+                    "lectures": [
+                        {
+                            "id": "0x0001",
+                            "title": "수필",
+                            "duration": "01:30:00"
+                        },
+                        {
+                            "id": "0x0002",
+                            "title": "문학",
+                            "duration": "00:45:00"
+                        }
+                    ],
+                    "session": {
+                        "start": "2024-07-20",
+                        "end": "2024-08-19"
                     }
                 }
             ],
-            "date": {
-                "start": "2024-07-19",
-                "end": "2024-08-31"
-            }
-        },
-        {
-            "class_id": 2,
-            "class_name": "국어",
-            "type": "lecture",
-            "amount": [
+            "plans": [
                 {
-                    "lecture_id": 1,
-                    "lecture_name": "수필",
-                    "duration": {
-                        "hour": 1,
-                        "min": 30
-                    }
+                    "id": "0x0001",
+                    "title": "Study Plan 1",
+                    "description": "This Study Plan shows every classes",
+                    "classes": ["0x0001", "0x0002"]
                 },
                 {
-                    "lecture_id": 2,
-                    "lecture_name": "문학",
-                    "duration": {
-                        "hour": 0,
-                        "min": 45
-                    }
+                    "id": "0x0002",
+                    "title": "Study Plan 2",
+                    "description": "This Study Plan shows only classes '국어'",
+                    "classes": ["0x0002"]
                 }
-            ],
-            "date": {
-                "start": "2024-07-20",
-                "end": "2024-08-19"
-            }
+            ]
         }
     ],
-    "plans" : [
-        {
-            "plan_id" : 1,
-            "title" : "Study Plan 1",
-            "description" : "Description of study plan 1",
-            "classes" : [1, 2]
+    "logs": {
+        "2024-07-19": {
+            "0x00000001": [
+                {
+                    "timestamp": "2024-07-19T14:23:45Z",
+                    "event_type": "login",
+                    "details": {
+                        "ip_address": "192.168.1.1",
+                        "device": "web",
+                        "status": "success"
+                    }
+                },
+                {
+                    "timestamp": "2024-07-19T15:10:11Z",
+                    "event_type": "logout",
+                    "details": {
+                        "duration": "00:46:26",
+                        "status": "success"
+                    }
+                }
+            ]
+        },
+        "2024-07-20": {
+            "0x00000001": [
+                {
+                    "timestamp": "2024-07-20T10:00:00Z",
+                    "event_type": "login",
+                    "details": {
+                        "ip_address": "192.168.1.1",
+                        "device": "web",
+                        "status": "success"
+                    }
+                }
+            ]
         }
-    ]
+    }
 }
-
