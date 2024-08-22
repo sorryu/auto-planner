@@ -1,80 +1,89 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let selectedDate = null;
-    let currentMonth = new Date().getMonth();
-    let currentYear = new Date().getFullYear();
-    let category = '';
+import React, { useState } from 'react';
+import './Calendar.css';
 
-    const daysContainer = document.getElementById('days-container');
-    const calendarTitle = document.getElementById('calendar-title');
-    const today = new Date();  // 오늘 날짜
+const Calendar = () => {
+  const today = new Date();
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [selectedDay, setSelectedDay] = useState(null);
 
-    function renderCalendar(month, year) {
-        daysContainer.innerHTML = '';
+  const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+  const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
 
-        const firstDay = new Date(year, month).getDay();
-        const daysInMonth = 32 - new Date(year, month, 32).getDate();
-        const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+  const getDaysInMonth = (month, year) => 32 - new Date(year, month, 32).getDate();
 
-        calendarTitle.textContent = `${year}년 ${monthNames[month]}`;
+  const handlePrevMonth = () => {
+    setCurrentMonth(prev => (prev === 0 ? 11 : prev - 1));
+    setCurrentYear(prev => (currentMonth === 0 ? prev - 1 : prev));
+    setSelectedDay(null); // 새로운 월로 이동 시 선택된 날짜 초기화
+  };
 
-        for (let i = 0; i < firstDay; i++) {
-            const emptyDiv = document.createElement('div');
-            emptyDiv.className = 'day empty';
-            daysContainer.appendChild(emptyDiv);
-        }
+  const handleNextMonth = () => {
+    setCurrentMonth(prev => (prev === 11 ? 0 : prev + 1));
+    setCurrentYear(prev => (currentMonth === 11 ? prev + 1 : prev));
+    setSelectedDay(null); // 새로운 월로 이동 시 선택된 날짜 초기화
+  };
 
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dayDiv = document.createElement('div');
-            dayDiv.className = 'day';
-            dayDiv.textContent = day;
+  const handleDayClick = (day) => {
+    setSelectedDay({ day, month: currentMonth, year: currentYear });
+  };
 
-            // 오늘 날짜인 경우에 배경색을 회색으로 고정
-            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                dayDiv.classList.add('active');
-            }
+  const renderCalendarDays = () => {
+    const firstDay = new Date(currentYear, currentMonth).getDay();
+    const daysInMonth = getDaysInMonth(currentMonth, currentYear);
+    const days = [];
 
-            dayDiv.addEventListener('click', function() {
-                document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
-                this.classList.add('active');
-            });
-
-            daysContainer.appendChild(dayDiv);
-        }
+    for (let i = 0; i < firstDay; i++) {
+      days.push(<div key={`empty-${i}`} className="day empty"></div>);
     }
 
-    function handlePrevMonth() {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
-        }
-        renderCalendar(currentMonth, currentYear);
+    for (let day = 1; day <= daysInMonth; day++) {
+      const isToday = day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+      const isSelected = selectedDay && day === selectedDay.day && currentMonth === selectedDay.month && currentYear === selectedDay.year;
+
+      days.push(
+        <div
+          key={day}
+          className={`day ${isSelected ? 'selected' : isToday ? 'today' : ''}`}
+          onClick={() => handleDayClick(day)}
+        >
+          {day}
+        </div>
+      );
     }
 
-    function handleNextMonth() {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-        }
-        renderCalendar(currentMonth, currentYear);
-    }
+    return days;
+  };
 
-    calendarTitle.addEventListener('click', function() {
-        document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
-
-        const todayDivs = Array.from(document.querySelectorAll('.day')).filter(dayDiv => {
-            return parseInt(dayDiv.textContent) === today.getDate() && currentMonth === today.getMonth()
-            && currentYear === today.getFullYear();
-        });
-
-        if (todayDivs.length > 0){
-            todayDivs[0].classList.add('active');
-        }
+  const handleTitleClick = () => {
+    setCurrentMonth(today.getMonth());
+    setCurrentYear(today.getFullYear());
+    setSelectedDay({
+      day: today.getDate(),
+      month: today.getMonth(),
+      year: today.getFullYear()
     });
+  };
 
-    document.querySelector('.pre-button').addEventListener('click', handlePrevMonth);
-    document.querySelector('.next-button').addEventListener('click', handleNextMonth);
+  return (
+    <div className="calendar">
+      <div className="Calendar-header">
+        <button className="pre-button" onClick={handlePrevMonth}>&#10094;</button>
+        <h1 id="calendar-title" onClick={handleTitleClick}>
+          {`${currentYear}년 ${monthNames[currentMonth]}`}
+        </h1>
+        <button className="next-button" onClick={handleNextMonth}>&#10095;</button>
+      </div>
+      <div className="days-of-week">
+        {daysOfWeek.map((day, index) => (
+          <div key={index} className="day-of-week">{day}</div>
+        ))}
+      </div>
+      <div className="days" id="days-container">
+        {renderCalendarDays()}
+      </div>
+    </div>
+  );
+};
 
-    renderCalendar(currentMonth, currentYear);
-});
+export default Calendar;
