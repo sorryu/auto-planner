@@ -1,4 +1,4 @@
-body{
+body {
     background-color: rgb(206, 122, 26);
 }
 
@@ -30,7 +30,7 @@ body{
     margin-bottom: 10px;
 }
 
-.day-of-week{
+.day-of-week {
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -55,7 +55,6 @@ body{
     text-align: center;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .day:hover {
@@ -63,27 +62,14 @@ body{
     border-radius: 50%;
 }
 
-.day.active{
+.day.active {
     background-color: gray;
-    color:white;
+    color: white;
 }
 
 .day.empty {
     background-color: white;
     cursor: default;  
-}
-
-.Calendar-buttons{
-    margin: 5px;
-    padding: 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.Calendar-buttons:hover{
-    background-color: lightgray;
-    border-radius: 50%;
 }
 
 .pre-button, .next-button {
@@ -92,24 +78,12 @@ body{
     cursor: pointer;
 }
 
-.Calendar-buttons{
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+.day.selected {
+    background-color: gray;
+    color: white;
 }
-.modal{
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
+
+.day.today {
+    background-color: lightgray;
+    color: black;
 }
