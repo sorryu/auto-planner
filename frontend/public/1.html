@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+    <div class="calendar">
+        <div class="Calendar-header">
+            <button class="pre-button" onclick="handlePrevMonth()">&#10094;</button>
+            <h1 id="calendar-title"></h1>
+            <button class="next-button" onclick="handleNextMonth()">&#10095;</button>
+        </div>
+        <div class="days-of-week">
+            <div class="day-of-week">일</div>
+            <div class="day-of-week">월</div>
+            <div class="day-of-week">화</div>
+            <div class="day-of-week">수</div>
+            <div class="day-of-week">목</div>
+            <div class="day-of-week">금</div>
+            <div class="day-of-week">토</div>
+        </div>
+        <div class="days" id="days-container"></div>
+        <div class="Calendar-buttons">
+            <!-- 카테고리 선택 모달 -->
+            <div id="category-modal" class="modal" style="display:none;">
+                <h2>카테고리 선택</h2>
+                <button onclick="openTaskModal('강의')">강의</button>
+                <button onclick="openTaskModal('복습')">복습</button>
+                <button onclick="openTaskModal('기타')">기타</button>
+                <button onclick="closeCategoryModal()">취소</button>
+            </div>
+            <!-- 할 일 추가 모달 -->
+            <div id="task-modal" class="modal" style="display:none;">
+                <h2 id="task-modal-title"></h2>
+                <textarea id="task-input"></textarea>
+                <button onclick="handleTaskSubmit()">저장</button>
+                <button onclick="closeTaskModal()">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="calendar.js"></script>
+</body>
+</html>
