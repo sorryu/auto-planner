@@ -1,5 +1,5 @@
 html{
-    background-color: antiquewhite;
+    background-color: rgb(206, 122, 26);
 }
 
 header{
@@ -14,13 +14,13 @@ header{
 #current-date{
     font-size: 21px;
     font-weight: 600;
-    color: antiquewhite;
+    color: rgb(206, 122, 26);
     cursor: default;
 }
 
 .todolist-button{
-    background-color: rgb(206, 122, 26);
-    color: white;
+    background-color: antiquewhite;
+    color:black;
     border: hidden;
     border-radius: 10px;
     width: 150px;
@@ -36,13 +36,13 @@ details{
 }
 
 details > summary{
-    background-color: rgb(206, 122, 26);
+    background-color: antiquewhite;
     padding: 10px;
     outline: 0;
     border-radius: 10px;
     cursor: pointer;
     text-align: left;
-    color: white;
+    color: black;
 }
 
 p{
@@ -55,7 +55,7 @@ input[type="checkbox"]{
 
 label{
     display: inline-block;
-    background-color: white;
+    background-color:black;
     width: 22px;
     height: 22px;
     border: hidden;
@@ -79,7 +79,7 @@ input[type="checkbox"]:checked  + label::after{
 }
 
 input[type="checkbox"]:checked ~ p{
-    text-decoration: underline white;
+    text-decoration: underline black;
     text-decoration-line: line-through;
     text-decoration-thickness: 2px;
 }
