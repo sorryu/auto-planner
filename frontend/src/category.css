@@ -1,0 +1,85 @@
+html{
+    background-color: antiquewhite;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+#current-date{
+    font-size: 21px;
+    font-weight: 600;
+    color: antiquewhite;
+    cursor: default;
+}
+
+.todolist-button{
+    background-color: rgb(206, 122, 26);
+    color: white;
+    border: hidden;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px; 
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    /* 버튼 디자인 -> ToDoList 버튼이랑 동일 */
+}
+
+details{
+    margin: 5px 0 10px;
+}
+
+details > summary{
+    background-color: rgb(206, 122, 26);
+    padding: 10px;
+    outline: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    color: white;
+}
+
+p{
+    color: black;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+label{
+    display: inline-block;
+    background-color: white;
+    width: 22px;
+    height: 22px;
+    border: hidden;
+    border-radius: 4px;
+    position: relative;
+    margin-left: 10px;
+}
+
+input[type="checkbox"]:checked  + label::after{
+    content: "\2714";
+    font-size: 15px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* background-color: antiquewhite;
+    border-radius: 4px;
+*/
+}
+
+input[type="checkbox"]:checked ~ p{
+    text-decoration: underline white;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 2px;
+}
