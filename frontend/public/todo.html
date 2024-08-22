@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css" />
+</head>
+<body>
+    <header>
+        <!-- 일단 현재 날짜로 설정함 -->
+        <div id="current-date">
+            <script>
+                date = new Date();
+                year = date.getFullYear();
+                month = date.getMonth()+1;
+                day = date.getDate();
+                document.getElementById("current-date").innerHTML = year + "년 " + month + "월 " + day + "일";
+            </script>
+        </div>
+        <button class="category-button">카테고리</button>
+    </header>
+    <div>
+        <div id="todo-container"></div>
+        <!-- <input type="checkbox" id="check1">
+            <label for="check1"></label> -->
+    </div>
+    <script src="todo.js"></script>
+</body>
