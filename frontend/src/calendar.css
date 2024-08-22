@@ -1,0 +1,89 @@
+body {
+    background-color: rgb(206, 122, 26);
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 500px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.Calendar-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#calendar-title {
+    cursor: pointer;
+}
+
+.days-of-week {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.day-of-week {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.days {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+    margin-bottom: 8px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.day.active {
+    background-color: gray;
+    color: white;
+}
+
+.day.empty {
+    background-color: white;
+    cursor: default;  
+}
+
+.pre-button, .next-button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.day.selected {
+    background-color: gray;
+    color: white;
+}
+
+.day.today {
+    background-color: lightgray;
+    color: black;
+}
