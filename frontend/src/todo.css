@@ -1,5 +1,5 @@
 html{
-    background-color: antiquewhite;
+    background-color: rgb(206, 122, 26);
 }
 
 header{
@@ -17,8 +17,8 @@ header{
 }
 
 .category-button{
-    background-color: rgb(206, 122, 26);
-    color: white;
+    background-color:antiquewhite;
+    color: black;
     border: hidden;
     border-radius: 10px;
     width: 150px;
@@ -30,7 +30,7 @@ header{
 }
 
 .Todo{
-    background-color: rgb(206, 122, 26);
+    background-color:antiquewhite;
     height: 40px;
     border-radius: 10px;
     display: flex;
@@ -44,7 +44,7 @@ input[type="checkbox"]{
 
 label{
     display: inline-block;
-    background-color: white;
+    background-color:white;
     width: 22px;
     height: 22px;
     border: hidden;
@@ -68,11 +68,16 @@ input[type="checkbox"]:checked  + label::after{
 }
 
 input[type="checkbox"]:checked ~ p{
-    text-decoration: underline white;
+    text-decoration: underline black;
     text-decoration-line: line-through;
     text-decoration-thickness: 2px;
 }
 
+P{
+    margin-left: 10px;
+    color: black;
+    font-weight: 500;
+}
 P{
     margin-left: 10px;
     color: white;
