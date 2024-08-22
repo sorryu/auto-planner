@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgb(206, 122, 26);
+        }
+        h2 {
+            color: #333;
+        }
+        .category {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: antiquewhite;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgb(144, 144, 144);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: rgb(206, 122, 26);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            
+            background-color: rgb(206, 122, 26);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 개인정보 카테고리 -->
+    <div class="category" id="personal-info">
+        <h2>개인정보</h2>
+        <label for="user-id">아이디</label>
+        <input type="text" id="user-id" placeholder="아이디 입력">
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" placeholder="비밀번호 입력">
+
+        <label for="mbti">MBTI</label>
+        <input type="text" id="mbti" placeholder="MBTI 입력">
+
+        <button onclick="savePersonalInfo()">저장</button>
+    </div>
+
+    <!-- 캘린더 설정 카테고리 -->
+    <!-- <div class="category" id="calendar-settings">
+        <h2>캘린더 설정</h2>
+        
+        <label for="start-day">기본 시작 요일</label>
+        <select id="start-day">
+            <option value="monday">월요일</option>
+            <option value="sunday">일요일</option>
+        </select>
+
+        <label for="notifications">알림 설정</label>
+        <select id="notifications">
+            <option value="email">이메일</option>
+            <option value="none">없음</option>
+        </select>
+
+        <button onclick="saveCalendarSettings()">저장</button>
+    </div> -->
+
+    <script>
+        function savePersonalInfo() {
+            const userId = document.getElementById('user-id').value;
+            const password = document.getElementById('password').value;
+            const mbti = document.getElementById('mbti').value;
+
+            // 서버나 로컬 스토리지에 저장하는 로직 추가
+            console.log(`UserID: ${userId}, Password: ${password}, MBTI: ${mbti}`);
+            alert('개인정보가 저장되었습니다.');
+        }
+
+        function saveCalendarSettings() {
+            const startDay = document.getElementById('start-day').value;
+            const timezone = document.getElementById('timezone').value;
+            const notifications = document.getElementById('notifications').value;
+
+            // 서버나 로컬 스토리지에 저장하는 로직 추가
+            console.log(`Start Day: ${startDay}, Timezone: ${timezone}, Notifications: ${notifications}`);
+            alert('캘린더 설정이 저장되었습니다.');
+        }
+    </script>
+
+</body>
+</html>
