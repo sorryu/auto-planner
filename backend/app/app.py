@@ -71,7 +71,9 @@ def signup():
 def editing_plans():
     data_of_plan = request.get_json()
     class_name = data_of_plan.get('class_name')
-    plan_date = data_of_plan.get('plan_date')
+    plan_date = data_of_plan.get('plan_date') # '00.00.00 ~ 00.00.00'
+    start_date = plan_date[0:8]
+    end_date = end_date[-8:]
     period = 0
     # 기간을 구하는 알고리즘 제작
     unit_name = data_of_plan.get('unit_name') # 여러 개를 입력받는 방법 공부 필요
@@ -82,10 +84,14 @@ def editing_plans():
     plan = {
         'plan_id':plan_id,
         'class_name':class_name,
-        'date':plan_date,
+        'date':{
+            'start_date':start_date,
+            'end_date':end_date
+        },
         'period':period,
-        'unit_name':unit_name,
-        'expected_time':expected_time
+        'unit': {
+            unit_name:expected_time
+        }
     }
 
     plan_list.append(plan)
