@@ -1,54 +1,79 @@
 from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
+from response import Response
+
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # JWT 시크릿 키 설정
-app.config['SECRET_KEY'] = 'YesJiseongTeam'
-app.config['BCRYPT_LEVEL'] = 10
-bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 # 임시 데이터 저장소
 users = []  # 사용자 목록
 
 # 사용자 로그인 엔드포인트
-@app.route('/api/study-plans/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def login():
-    data = request.get_json()  # 요청에서 JSON 데이터 추출
-    email = data.get('email')  # 이메일 추출
-    password = data.get('password')  # 비밀번호 추출
-    
-    # 이메일과 비밀번호가 일치하는 사용자를 찾음
-    user = next((u for u in users if u['login_info']['Email'] == email and u['login_info']['password'] == password), None)
-    
-    if user:
-        access_token = create_access_token(identity=user['user_id'])  # JWT 액세스 토큰 생성
-        return jsonify(token=access_token, user_id=user['user_id']), 200  # 토큰과 사용자 ID 반환
-    else:
-        return jsonify({"msg": "Bad email or password"}), 401  # 로그인 실패 시 401 Unauthorized 반환
-
-# 새로운 사용자 회원가입 엔드포인트
-@app.route('/api/study-plans/signup', methods=['POST'])
-def signup():
-    data = request.get_json()  # 요청에서 JSON 데이터 추출
-    email = data.get('email')  # 이메일 추출
-    password = data.get('password')  # 비밀번호 추출
-    pw_hash = bcrypt.generate_password_hash(password)
-    name = data.get('name')  # 이름 추출
-    mbti = data.get('mbti')  # MBTI 추출
-    
-    # 이미 존재하는 이메일인지 확인
-    if any(u for u in users if u['login_info']['Email'] == email):
-        return jsonify({"error": "Email already exists"}), 409  # 이메일이 이미 존재하면 409 Conflicts 반환
-
-    user_id = len(users) + 1  # 새로운 사용자 ID 생성
-    user = {
-        "user_id": user_id,
-        "login_info": {"Email": email, "password": password},
-        "user_info": {"name": name, "mbti": mbti}
+    data:dict = request.get_json()
+    """
+    {
+        "email": "user@email.com"
+        "password": "bcrypt_password"
     }
-    users.append(user)  # 사용자 목록에 추가
-    return jsonify(user_id=user_id), 201  # 새로운 사용자 ID 반환
+    """
+    if not data or 'email' not in data or 'password' not in data:
+        response = Response(
+            {
+                "message": "Email and password are required"
+            }, 400
+        )
+    else:
+        email = data.get('email')
+        password = data.get('password')
+        if email not in users or users[email] != password:
+            response = Response(
+                {
+                    "message": "Invalid email or password"
+                }, 401
+            )
+        else:
+            response = Response(
+                {
+                    "message": "Login Successful"
+                }, 200
+            )
+    return response.send()
 
-if __name__ == '__main__':
-    app.run(debug=True)  # Flask 앱 실행
+# 사용자 회원가입 엔드포인트
+@app.route('/api/signin', methods=['POST'])
+def signin():...
+
+# 날짜별 To-Do List 표시 엔드포인트
+@app.route('/api/main/todos', methods=['GET'])
+def get_todos():...
+
+# 특정 날짜의 To-Do List 삭제 엔드포인트
+@app.route('/api/main/todos', methods=['DELETE'])
+def delete_todos():...
+
+# 특정 To-Do List를 완료 상태로 변경
+@app.route('/api/main/todos', methods=['PATCH'])
+def complete_todos():...
+
+# 특정 카테고리 삭제
+@app.route('/api/categories', methods=['DELETE'])
+def delete_category():...
+
+# 카테고리 추가
+@app.route('/api/categories', methods=['POST'])
+def add_category():...
+
+# To-Do List 추가
+@app.route('/api/plan', methods=['POST'])
+def add_todo():...
+
+# 추가한 카테고리로 계획 세우기
+@app.route('/api/plan', methods=['POST'])
+def make_plan():...
+
+# 개인정보 변경하기
+@app.route('/api/setting', methods=['PATCH'])
+def edit_info():...
