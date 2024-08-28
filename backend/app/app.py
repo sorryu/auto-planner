@@ -11,17 +11,6 @@ jwt = JWTManager(app)
 # 임시 데이터 저장소
 users = []  # 사용자 목록
 
-# 사용자가 로그인하지 않은 상태인지 확인하는 엔드포인트
-@app.route('/api/study-plans/home', methods=['HEAD'])
-def check_not_logged_in():
-    return '', 401  # 항상 401 Unauthorized 반환
-
-# 사용자가 로그인한 상태인지 확인하는 엔드포인트
-@app.route('/api/study-plans/home/<int:user_id>', methods=['HEAD'])
-@jwt_required()  # JWT 인증 필요
-def check_logged_in(user_id):
-    return '', 200  # 항상 200 OK 반환
-
 # 사용자 로그인 엔드포인트
 @app.route('/api/study-plans/login', methods=['POST'])
 def login():
@@ -50,7 +39,7 @@ def signup():
     
     # 이미 존재하는 이메일인지 확인
     if any(u for u in users if u['login_info']['Email'] == email):
-        return jsonify({"error": "Email already exists"}), 400  # 이메일이 이미 존재하면 400 Bad Request 반환
+        return jsonify({"error": "Email already exists"}), 409  # 이메일이 이미 존재하면 409 Conflicts 반환
 
     user_id = len(users) + 1  # 새로운 사용자 ID 생성
     user = {
