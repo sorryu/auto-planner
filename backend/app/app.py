@@ -15,7 +15,7 @@ def login():
     data:dict = request.get_json()
     """
     {
-        "email": "user@email.com"
+        "email": "user@email.com",
         "password": "bcrypt_password"
     }
     """
@@ -23,28 +23,70 @@ def login():
         response = Response(
             {
                 "message": "Email and password are required"
-            }, 400
+            }, 400 #Bad Request
         )
     else:
         email = data.get('email')
         password = data.get('password')
-        if email not in users or users[email] != password:
+        if email not in users or users[email] != password: # 패스워드 비교 및 해시화는 다른 모듈로 처리 예정
             response = Response(
                 {
                     "message": "Invalid email or password"
-                }, 401
+                }, 401 #Unauthorized
             )
         else:
             response = Response(
                 {
                     "message": "Login Successful"
-                }, 200
+                }, 200 #OK
             )
     return response.send()
 
 # 사용자 회원가입 엔드포인트
 @app.route('/api/signin', methods=['POST'])
-def signin():...
+def signin():
+    data:dict = request.get_json()
+    """
+    {
+        "name": "홍길동",
+        "email": "user@email.com,
+        "password": "bcrypt_password",
+        "check_password": "bcrypt_password",
+        "MBTI": "ABCD"
+    }
+    """
+    if not data or not ('name' and 'email' and 'password' and 'check_password' and 'MBTI') not in data:
+        response = Response(
+            {
+                "message": "All elements are needed"
+            }, 400 #Bad Request
+        )
+    else:
+        name = data.get('name')
+        email = data.get('email')
+        password = data.get('password')
+        check_password = data.get('check_password')
+        mbti = data.get('MBTI')
+        if email in users:
+            response = Response(
+                {
+                    "message": "Email already exists"
+                }, 409 #Conflicts
+            )
+        elif password != check_password:
+            response = Response(
+                {
+                    "message": "Password is Different"
+                }, 401 #Unauthorized
+            )
+        else:
+            users[email] = password
+            response = Response(
+                {
+                    "message": "User registered successfully"
+                }, 200 #OK
+            )
+    return response.send()
 
 # 날짜별 To-Do List 표시 엔드포인트
 @app.route('/api/main/todos', methods=['GET'])
