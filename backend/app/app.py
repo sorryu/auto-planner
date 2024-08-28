@@ -1,15 +1,21 @@
 from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # JWT 시크릿 키 설정
-app.config['SECRET_KEY'] = 'YesJiseongTeam'
-app.config['BCRYPT_LEVEL'] = 10
-bcrypt = Bcrypt(app)
+
 jwt = JWTManager(app)
 
 # 임시 데이터 저장소
 users = []  # 사용자 목록
+
+# Plan_list
+# 계획 리스트
+plan_list = []
+
+# To do list
+to_do_list = []
 
 # 사용자가 로그인하지 않은 상태인지 확인하는 엔드포인트
 @app.route('/api/study-plans/home', methods=['HEAD'])
@@ -44,7 +50,6 @@ def signup():
     data = request.get_json()  # 요청에서 JSON 데이터 추출
     email = data.get('email')  # 이메일 추출
     password = data.get('password')  # 비밀번호 추출
-    pw_hash = bcrypt.generate_password_hash(password)
     name = data.get('name')  # 이름 추출
     mbti = data.get('mbti')  # MBTI 추출
     
@@ -60,6 +65,59 @@ def signup():
     }
     users.append(user)  # 사용자 목록에 추가
     return jsonify(user_id=user_id), 201  # 새로운 사용자 ID 반환
+
+
+@app.route('/api/study-plans/edit-plans', methods=['POST'])
+def editing_plans():
+    data_of_plan = request.get_json()
+    class_name = data_of_plan.get('class_name')
+    plan_date = data_of_plan.get('plan_date') # '00.00.00 ~ 00.00.00'
+    start_date = plan_date[0:8]
+    end_date = end_date[-8:]
+    period = 0
+    # 기간을 구하는 알고리즘 제작
+    unit_name = data_of_plan.get('unit_name') # 여러 개를 입력받는 방법 공부 필요
+    expected_time = data_of_plan.get('expected_time')
+    
+    plan_id = len(plan_list) + 1
+
+    plan = {
+        'plan_id':plan_id,
+        'class_name':class_name,
+        'date':{
+            'start_date':start_date,
+            'end_date':end_date
+        },
+        'period':period,
+        'unit': {
+            unit_name:expected_time
+        }
+    }
+
+    plan_list.append(plan)
+
+    return 201
+
+@app.route('api/study-plans/edit-to-do-list', methods=['POST'])
+def editing_to_do_list():
+    data_of_to_do_list = request.get_json()
+    to_do_name = data_of_to_do_list.get('to_do_name')
+    description = data_of_to_do_list.get('description')
+    to_do_date = data_of_to_do_list.get('to_do_date')
+
+    to_do_list_id = len(to_do_list) + 1
+
+    to_do = {
+        'to_do_list_id':to_do_list_id,
+        'to_do_name':to_do_name,
+        'description':description,
+        'to_do_date':to_do_date
+    }
+
+    to_do_list.append(to_do)
+
+    return 201
+
 
 if __name__ == '__main__':
     app.run(debug=True)  # Flask 앱 실행
