@@ -1,0 +1,45 @@
+.Category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.back-button {
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#current-date {
+    font-size: 18px;
+}
+
+.category-button {
+    background-color: antiquewhite;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+details{
+    margin: 5px 0 10px;
+}
+
+details summary{
+    background-color: antiquewhite;
+    padding: 10px;
+    outline: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    color: black;
+}

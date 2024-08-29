@@ -1,0 +1,64 @@
+.SettingTotal{
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    width: 500px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+h2.info {
+    color: #333;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+}
+.SettingTotal label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.SettingTotal input {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+}
+.SettingTotal button {
+    padding: 10px 15px;
+    background-color: rgb(206, 122, 26);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.SaveButton{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+a.backbutton{
+    position: absolute;
+    top: 15px; /* Adjusted vertical position */
+    left: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+a.backbutton:hover{
+    background-color: #f2e1d9;
+}
+.SettingHead{
+    display: flex;
+    justify-content: left;
+}
