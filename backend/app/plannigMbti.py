@@ -1,9 +1,8 @@
-class plan():
+class Plan():
     def __init__(self, plan_id, period) -> None:
-        self.plan_id = plan_id
-        self.period = period
 
-class date():
+
+class Date():
     period = 0
     # 필요한 인자
     """
@@ -22,11 +21,26 @@ class date():
     def __init__(self, start:dict, end:dict) -> None:
         for year in range(start['year'], end['year']+1):
             # 윤년 계산 제작
-            self.period += 365    
-        self.year = end['year'] - start['year']
-        self.month = end['month'] - start['month']
-        self.day = end['day'] - start['day']
+            if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):
+                self.period += 366
+            else:
+                self.period += 365
+
+        for month in range(1, end['month'] - start['month'] + 1):
+            match month:
+                case 1|3|5|7|8|10|12:
+                    self.period += 31
+                case 2:
+                    if end['year'] % 400 == 0 or (end['year'] % 4 == 0 and end['year'] % 100 != 0):
+                        self.period += 29
+                    else:
+                        self.period += 28
+                case 4|6|9|11:
+                    self.period += 30
+        self.period += end['day'] - start['day']
         
+    def return_period(self):
+        return self.period
         
 
 
@@ -42,8 +56,24 @@ def matching_plan_style(plan_id:str, date:dict, unit:dict, mbti:str) -> None:
     # 짧은 시간 공부
     bool_study_short = True
     # 기간 구하기
-    period = cal_period()
-
+    """
+    date = {
+        'start_date': {
+            'year': int
+            'month': int
+            'day': int
+        }
+        'end_date': {
+            'year': int
+            'month': int
+            'day': int
+        }
+    }
+    """
+    start_date = date['start_date']
+    end_date = date['end_date']
+    dateclass = Date(start_date, end_date)
+    period = dateclass.return_period()
 
     if mbti[0] == "I":
         bool_study_with = False
@@ -57,3 +87,4 @@ def matching_plan_style(plan_id:str, date:dict, unit:dict, mbti:str) -> None:
     if mbti[3] == "J":
         bool_study_short = False
 
+    # 객체 만들기
