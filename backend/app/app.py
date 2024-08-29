@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_bcrypt import Bcrypt
+import plannigMbti
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # JWT 시크릿 키 설정
@@ -9,6 +10,8 @@ jwt = JWTManager(app)
 
 # 임시 데이터 저장소
 users = []  # 사용자 목록
+# 유저 mbti
+global user_mbti
 
 # Plan_list
 # 계획 리스트
@@ -52,7 +55,9 @@ def signup():
     password = data.get('password')  # 비밀번호 추출
     name = data.get('name')  # 이름 추출
     mbti = data.get('mbti')  # MBTI 추출
-    
+    global user_mbti
+    user_mbti = mbti
+
     # 이미 존재하는 이메일인지 확인
     if any(u for u in users if u['login_info']['Email'] == email):
         return jsonify({"error": "Email already exists"}), 400  # 이메일이 이미 존재하면 400 Bad Request 반환
@@ -69,31 +74,35 @@ def signup():
 
 @app.route('/api/study-plans/edit-plans', methods=['POST'])
 def editing_plans():
+
     data_of_plan = request.get_json()
     class_name = data_of_plan.get('class_name')
     plan_date = data_of_plan.get('plan_date') # '00.00.00 ~ 00.00.00'
     start_date = plan_date[0:8]
     end_date = end_date[-8:]
-    period = 0
-    # 기간을 구하는 알고리즘 제작
-    unit_name = data_of_plan.get('unit_name') # 여러 개를 입력받는 방법 공부 필요
-    expected_time = data_of_plan.get('expected_time')
+    
+    # 단원 작업 필요
+    unit = dict()
+    # 여러 단원 입력 받기
+    # unit_name = data_of_plan.get('unit_name')
+    # expected_time = data_of_plan.get('expected_time')
     
     plan_id = len(plan_list) + 1
 
-    plan = {
-        'plan_id':plan_id,
-        'class_name':class_name,
-        'date':{
-            'start_date':start_date,
-            'end_date':end_date
+    date = {
+        'start_date': {
+            'year':2000 + int(start_date[:2]),
+            'month':int(start_date[3:5]),
+            'day':int(start_date[6:8])
         },
-        'period':period,
-        'unit': {
-            unit_name:expected_time
+        'end_date': {
+            'year':2000 + int(end_date[:2]),
+            'month':int(end_date[3:5]),
+            'day':int(end_date[6:8])
         }
     }
-
+    
+    plan = plannigMbti.matching_plan_style(plan_id, date, unit, user_mbti)
     plan_list.append(plan)
 
     return 201
