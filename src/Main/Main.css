@@ -1,0 +1,94 @@
+.Maindisplay .head {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    margin: 0px;
+    border-radius: 0px 0px 9px 9px;
+    box-sizing: inherit;
+    background-color: antiquewhite;
+}
+
+.Maindisplay{
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.MainLogo {
+    margin-left: 25px;
+    font-size: 50px;
+    font-weight: 900;
+    display: flex;
+    text-align: center;
+}
+
+#MainLogo{
+    color: black;
+    text-decoration-line: none;
+}
+
+.add-button {
+    border: none;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 7px;
+    padding: 8px;
+    background-color: rgb(206, 122, 26);
+    cursor: pointer;
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.add-button:hover{
+    background-color: #e68900;
+}
+
+.mypage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+.auto-mypage {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+#root{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.space{
+    width: 10%;
+}
+
+.settingpic{
+    margin-right: 10px;
+    display: flex;
+    width: 55px;   
+}

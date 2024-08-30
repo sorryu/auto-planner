@@ -1,0 +1,74 @@
+.Gaipbody{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+.Gaiph2{
+    color: #333;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+}
+.join{
+    text-align: left;
+}
+.GaipName, .GaipEmail, .PW, .PWCheck, .MBTI{
+    text-align: left;
+    flex-direction: column;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.Gaipbody input{
+    padding: 8px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+.GaiploginBT{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+.GaipBtn{
+    border: none;
+    width: 250px;
+    height: 45px;
+    font-size: 16px;
+    background-color: rgb(206,122,26);
+    color: white;
+    cursor: pointer;
+    padding: 11px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.GaipBtn:hover{
+    background-color: #e68900;
+}
+.GaipHead > .backbutton{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 16px;
+    text-decoration-line: none;
+    background-color: antiquewhite;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+.GaipHead{
+    display: flex;
+    justify-content: left;
+}

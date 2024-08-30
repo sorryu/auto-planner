@@ -1,0 +1,72 @@
+.SelfAdd-total{
+    width: 400px;
+    padding: 30px 30px 20px 30px;
+    background-color: antiquewhite;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.SelfAdd-total h1{
+    color: black;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.SelfAdd-total .form-group{
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.SelfAdd-total label{
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 18px;
+}
+
+.SelfAdd-total [type="text"],select,input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.SelfAdd-total input[type="text"]::placeholder {
+    color: #ccc;
+}
+
+.SelfAdd-total button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(206, 122, 26);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.SelfAdd-total button:hover {
+    background-color: #e68900;
+}
+
+.SelfAdd-total ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.SelfAdd-total li {
+    padding: 12px;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
