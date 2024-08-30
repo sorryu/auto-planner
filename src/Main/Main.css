@@ -1,3 +1,11 @@
+@import url("https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css");
+
+*{
+    font-family: "Goorm Sans", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
 .Maindisplay .head {
     display: flex;
     justify-content: space-between;
