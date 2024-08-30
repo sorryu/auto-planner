@@ -1,134 +1,85 @@
-/* 모달 배경 */
-.category-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 배경 반투명 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+html{
+    background-color: antiquewhite;
 }
 
-/* 모달 콘텐츠 */
-.category-modal-content {
-    background-color: white;
-    width: 500px; /* 모달 창 크기 */
-    padding: 20px;
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+#current-date{
+    font-size: 21px;
+    font-weight: 600;
+    color: antiquewhite;
+    cursor: default;
+}
+
+.todolist-button{
+    background-color: rgb(206, 122, 26);
+    color: white;
+    border: hidden;
     border-radius: 10px;
-    position: relative;
-}
-
-/* 닫기 버튼 */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
+    width: 150px;
+    height: 40px; 
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
+    /* 버튼 디자인 -> ToDoList 버튼이랑 동일 */
 }
 
-/* 헤더 스타일 */
-.category-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+details{
+    margin: 5px 0 10px;
+}
+
+details > summary{
+    background-color: rgb(206, 122, 26);
     padding: 10px;
+    outline: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    color: white;
 }
 
-/* 뒤로 가기 버튼 */
-.back-button {
-    font-size: 16px;
-    text-decoration: none;
+p{
     color: black;
-    background-color: antiquewhite;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+label{
     display: inline-block;
-    cursor: pointer;
+    background-color: white;
+    width: 22px;
+    height: 22px;
+    border: hidden;
+    border-radius: 4px;
+    position: relative;
+    margin-left: 10px;
 }
 
-/* 카테고리 수정 버튼 */
-.category-button {
-    background-color: antiquewhite;
-    color: black;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* 카테고리 아이템 스타일 */
-.category-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+input[type="checkbox"]:checked  + label::after{
+    content: "\2714";
+    font-size: 15px;
+    width: 22px;
+    height: 22px;
     text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* background-color: antiquewhite;
+    border-radius: 4px;
+*/
 }
 
-/* 카테고리 이름 */
-.added-category-name {
-    flex-grow: 1;
-    margin-right: 10px;
-    margin-top: 25px; /* 이름의 상단 마진 */
-    margin-bottom: 4px; /* 이름의 하단 마진 */
-}
-
-/* 카테고리 날짜 */
-.category-dates {
-    margin-right: 10px;
-    color: #333333;
-}
-
-/* 카테고리 삭제 버튼 */
-.category-delete {
-    border: 1px solid rgb(206, 122, 26);
-    background-color: rgb(206, 122, 26);
-    border-radius: 2px;
-    padding: 3px;
-    cursor: pointer;
-}
-
-/* 모달 내부의 텍스트 입력 필드 */
-.modal-content input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* 모달 내부의 날짜 입력 필드 */
-.modal-content input[type="date"] {
-    width: calc(100% - 20px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* 모달 내부의 텍스트 표시 */
-.modal-content span {
-    display: block;
-    margin: 5px 0;
-}
-
-/* 시작일, 마감일 레이블 */
-.add-start, .add-finish {
-    margin-bottom: 5px;
-}
-
-/* 카테고리 추가 버튼 */
-.add-category {
-    border: 1px solid rgb(206, 122, 26);
-    background-color: rgb(206, 122, 26);
-    border-radius: 2px;
-    padding: 3px;
+input[type="checkbox"]:checked ~ p{
+    text-decoration: underline white;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 2px;
 }
