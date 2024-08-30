@@ -42,13 +42,10 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
-.AutoAdd-total p{
-    margin: 0 8px 0 0;
+.time-inputs p{
+    margin: 0 8px 0 2px;
 }
 
-.AutoAdd-total [type="number"] {
-    width: 70px; /* 시간과 분 입력 칸의 크기 조정 */
-}
 
 .AutoAdd-total button {
     width: 100%;
@@ -64,4 +61,8 @@
 
 .AutoAdd-total button:hover {
     background-color: #e68900;
+}
+
+#estimated-time, #estimated-minutes{
+    width: 70px;
 }
