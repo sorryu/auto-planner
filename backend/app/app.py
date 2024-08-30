@@ -3,11 +3,13 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 
 from response import Response
 
+from temporary_database import Database, manageDatabase # 임시 데이터베이스
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'jiseong1221'
 jwt = JWTManager(app)
 
-# 임시 데이터 저장소
-users = []  # 사용자 목록
+db = manageDatabase.generateDatabase()
 
 # 사용자 로그인 엔드포인트
 @app.route('/api/login', methods=['POST'])
@@ -35,9 +37,11 @@ def login():
                 }, 401 #Unauthorized
             )
         else:
+            access_token = create_access_token(identity=email)
             response = Response(
                 {
-                    "message": "Login Successful"
+                    "message": "Login Successful",
+                    "access_token": access_token
                 }, 200 #OK
             )
     return response.send()
@@ -55,7 +59,7 @@ def signin():
         "MBTI": "ABCD"
     }
     """
-    if not data or not ('name' and 'email' and 'password' and 'check_password' and 'MBTI') not in data:
+    if not data or ('name' and 'email' and 'password' and 'check_password' and 'MBTI') not in data:
         response = Response(
             {
                 "message": "All elements are needed"
@@ -80,7 +84,11 @@ def signin():
                 }, 401 #Unauthorized
             )
         else:
-            users[email] = password
+            users[email] = {
+                "name": name,
+                "password": password,
+                "mbti": mbti
+            }
             response = Response(
                 {
                     "message": "User registered successfully"
@@ -90,11 +98,50 @@ def signin():
 
 # 날짜별 To-Do List 표시 엔드포인트
 @app.route('/api/main/todos', methods=['GET'])
-def get_todos():...
+@jwt_required() # 로그인 필요
+def get_todos():
+    email = get_jwt_identity() # JWT에서 사용자 식별 정보를 가져온다.
+    date = request.args.get('date')
+    if not date:
+        response = Response(
+            {
+                "message": "Invalid date format"
+            }, 400 #Bad Request
+        )
+    else:
+        user_todos:dict = todos.get(email, {})
+        response = Response(
+            {
+                "todos": user_todos.get(date, [])
+            }, 200 #OK
+        )
+    return response.send()
 
 # 특정 날짜의 To-Do List 삭제 엔드포인트
 @app.route('/api/main/todos', methods=['DELETE'])
-def delete_todos():...
+@jwt_required()
+def delete_todos():
+    data:dict = request.get_json()
+    """
+    {
+        "date": "yyyy-mm-dd",
+        "todo": "title"
+    }
+    """
+    if not data or 'date' not in data:
+        response = Response(
+            {
+                "message": "Date is required"
+            }, 400 #Bad Request
+        )
+    else:
+        email = get_jwt_identity()
+        date = data.get('date')
+        todo = data.get('todo')
+        user_todos = todos.get(email, {}).get(date, [])
+        if todo in user_todos:
+            del user_todos[todo]
+
 
 # 특정 To-Do List를 완료 상태로 변경
 @app.route('/api/main/todos', methods=['PATCH'])
